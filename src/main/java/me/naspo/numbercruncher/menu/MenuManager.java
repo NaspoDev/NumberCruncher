@@ -14,9 +14,9 @@ public class MenuManager {
 
     public MenuManager() {
         welcomeScreen = new WelcomeScreen(this);
-        playMenu = new PlayMenu();
-        tutorialMenu = new TutorialMenu();
-        leaderboardMenu = new LeaderboardMenu();
+        playMenu = new PlayMenu(this);
+        tutorialMenu = new TutorialMenu(this);
+        leaderboardMenu = new LeaderboardMenu(this);
     }
 
 

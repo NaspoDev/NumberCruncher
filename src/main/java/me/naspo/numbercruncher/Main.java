@@ -15,6 +15,19 @@ public class Main {
 
         game.instantiateClasses();
         game.start();
+
+        //Runtime event for program end.
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                onDisable();
+            }
+        }));
+    }
+
+    //Called when the program finishes.
+    public static void onDisable() {
+
     }
 
     private void instantiateClasses() {

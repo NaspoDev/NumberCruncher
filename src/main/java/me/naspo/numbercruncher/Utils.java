@@ -7,6 +7,7 @@ public class Utils {
     private static final Scanner scan = new Scanner(System.in);
     private static boolean loop = true;
 
+    //Gets and returns an integer input.
     public static int getInt() {
         do {
             try {
@@ -17,5 +18,10 @@ public class Utils {
         } while (loop);
 
         return 0;
+    }
+
+    //Removes filetype extension from file name.
+    public static String removeExtension(String name) {
+        return name.substring(0, name.lastIndexOf('.'));
     }
 }

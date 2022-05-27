@@ -1,13 +1,11 @@
 package me.naspo.numbercruncher.menu.menus;
 
-import java.util.Scanner;
+import me.naspo.numbercruncher.menu.MenuManager;
 
-public class PlayMenu {
+public class PlayMenu extends Menu {
 
-    private Scanner scan;
-
-    public PlayMenu() {
-        scan = new Scanner(System.in);
+    public PlayMenu(MenuManager menuManager) {
+        super(menuManager);
     }
 
 
