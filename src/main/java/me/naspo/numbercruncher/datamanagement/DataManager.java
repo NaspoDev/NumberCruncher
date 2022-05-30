@@ -2,14 +2,13 @@ package me.naspo.numbercruncher.datamanagement;
 
 import me.naspo.numbercruncher.Utils;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//File management, saving, restoration, data storage, etc...
 public class DataManager {
 
     private File dir;
@@ -19,14 +18,12 @@ public class DataManager {
 
     private Logger log;
 
-    public static HashMap<String, HashMap<String, Integer>> playerData = new HashMap<>();
+    private HashMap<String, HashMap<String, Integer>> playerData = new HashMap<>();
 
     public DataManager() {
         log = Logger.getLogger(DataManager.class.getName());
 
         mkdirs();
-        //saveDefaultConfig();
-
     }
 
     //Creates the NumberCruncher folder.
@@ -49,9 +46,11 @@ public class DataManager {
         }
     }
 
-    public void saveData() {
+    //Saves hashmap data to files.
+    public void savePlayerData() {
         for (Map.Entry<String, HashMap<String, Integer>> entry : playerData.entrySet()) {
 
+            //Create/get the player's file.
             playerFile = new File(dir, entry.getKey() + ".yml");
             if (!(playerFile.exists())) {
                 try {
@@ -63,6 +62,7 @@ public class DataManager {
                 }
             }
 
+            //Load the file as a Yaml configuaration and make the edits.
             playerConfig = YamlConfiguration.loadConfiguration(playerFile);
 
             playerConfig.set("player-name", entry.getKey());
@@ -70,6 +70,7 @@ public class DataManager {
             playerConfig.set("medium-high-score", entry.getValue().get("medium-high-score"));
             playerConfig.set("hard-high-score", entry.getValue().get("hard-high-score"));
 
+            //Save the file.
             try {
                 playerConfig.save(playerFile);
             } catch (IOException e) {
@@ -79,7 +80,8 @@ public class DataManager {
         }
     }
 
-    public void restoreData() {
+    //Restores data from files to the hashmap.
+    public void restorePlayerData() {
         if (dir.length() == 0) {
             return;
         }
@@ -95,4 +97,8 @@ public class DataManager {
         }
     }
 
+    //Getter for playerData hashmap.
+    public HashMap<String, HashMap<String, Integer>> getPlayerData() {
+        return playerData;
+    }
 }

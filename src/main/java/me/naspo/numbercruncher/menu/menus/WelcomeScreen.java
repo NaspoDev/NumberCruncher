@@ -19,7 +19,7 @@ public class WelcomeScreen extends Menu {
     }
 
     private void input() {
-        switch (Utils.getInt()) {
+        switch (Utils.getInt(1, 3)) {
             case 1 -> playGame();
             case 2 -> howToPlay();
             case 3 -> leaderboard();

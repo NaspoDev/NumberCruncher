@@ -1,5 +1,6 @@
 package me.naspo.numbercruncher.menu;
 
+import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.menu.menus.TutorialMenu;
 import me.naspo.numbercruncher.menu.menus.LeaderboardMenu;
 import me.naspo.numbercruncher.menu.menus.PlayMenu;
@@ -12,9 +13,12 @@ public class MenuManager {
     private TutorialMenu tutorialMenu;
     private LeaderboardMenu leaderboardMenu;
 
-    public MenuManager() {
+    private AccountManager accountManager;
+    public MenuManager(AccountManager accountManager) {
+        this.accountManager = accountManager;
+
         welcomeScreen = new WelcomeScreen(this);
-        playMenu = new PlayMenu(this);
+        playMenu = new PlayMenu(this, accountManager);
         tutorialMenu = new TutorialMenu(this);
         leaderboardMenu = new LeaderboardMenu(this);
     }
