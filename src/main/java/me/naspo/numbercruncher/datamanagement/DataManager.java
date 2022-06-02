@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
 
-//File management, saving, restoration, data storage, etc...
+//File management, saving, restoration, etc...
 public class DataManager {
 
     private File dir;
@@ -18,9 +18,10 @@ public class DataManager {
 
     private Logger log;
 
-    private HashMap<String, HashMap<String, Integer>> playerData = new HashMap<>();
+    private AccountManager accountManager;
+    public DataManager(AccountManager accountManager) {
+        this.accountManager = accountManager;
 
-    public DataManager() {
         log = Logger.getLogger(DataManager.class.getName());
 
         mkdirs();
@@ -48,15 +49,15 @@ public class DataManager {
 
     //Saves hashmap data to files.
     public void savePlayerData() {
-        for (Map.Entry<String, HashMap<String, Integer>> entry : playerData.entrySet()) {
+        for (Account account : accountManager.getAccountList()) {
 
             //Create/get the player's file.
-            playerFile = new File(dir, entry.getKey() + ".yml");
+            playerFile = new File(dir, account.getUsername() + ".yml");
             if (!(playerFile.exists())) {
                 try {
                     playerFile.createNewFile();
                 } catch (IOException e) {
-                    log.warning("Could not create playerdata file for player " + entry.getKey());
+                    log.warning("Could not create playerdata file for player " + account.getUsername());
                     e.printStackTrace();
                     return;
                 }
@@ -65,16 +66,16 @@ public class DataManager {
             //Load the file as a Yaml configuaration and make the edits.
             playerConfig = YamlConfiguration.loadConfiguration(playerFile);
 
-            playerConfig.set("player-name", entry.getKey());
-            playerConfig.set("easy-high-score", entry.getValue().get("easy-high-score"));
-            playerConfig.set("medium-high-score", entry.getValue().get("medium-high-score"));
-            playerConfig.set("hard-high-score", entry.getValue().get("hard-high-score"));
+            playerConfig.set("username", account.getUsername());
+            playerConfig.set("easy-high-score", account.getEasyHighScore());
+            playerConfig.set("medium-high-score", account.getMediumHighScore());
+            playerConfig.set("hard-high-score", account.getHardHighScore());
 
             //Save the file.
             try {
                 playerConfig.save(playerFile);
             } catch (IOException e) {
-                log.warning("Could not save playerdata for player uuid " + entry.getKey());
+                log.warning("Could not save playerdata for player uuid " + account.getUsername());
                 e.printStackTrace();
             }
         }
@@ -88,17 +89,13 @@ public class DataManager {
         for (File file : dirListings) {
             playerConfig = YamlConfiguration.loadConfiguration(file);
 
-            HashMap<String, Integer> stats = new HashMap<>();
-            stats.put("easy-high-score", playerConfig.getInt("easy-high-score"));
-            stats.put("medium-high-score", playerConfig.getInt("medium-high-score"));
-            stats.put("hard-high-score", playerConfig.getInt("hard-high-score"));
+            Account account = new Account(Utils.removeExtension(file.getName()));
 
-            playerData.put(Utils.removeExtension(file.getName()), stats);
+            account.setEasyHighScore(playerConfig.getInt("easy-high-score"));
+            account.setMediumHighScore(playerConfig.getInt("medium-high-score"));
+            account.setHardHighScore(playerConfig.getInt("hard-high-score"));
+
+           accountManager.getAccountList().add(account);
         }
-    }
-
-    //Getter for playerData hashmap.
-    public HashMap<String, HashMap<String, Integer>> getPlayerData() {
-        return playerData;
     }
 }

@@ -20,7 +20,7 @@ public class MenuManager {
         welcomeScreen = new WelcomeScreen(this);
         playMenu = new PlayMenu(this, accountManager);
         tutorialMenu = new TutorialMenu(this);
-        leaderboardMenu = new LeaderboardMenu(this);
+        leaderboardMenu = new LeaderboardMenu(this, accountManager);
     }
 
 

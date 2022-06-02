@@ -2,7 +2,6 @@ package me.naspo.numbercruncher.menu.menus;
 
 import me.naspo.numbercruncher.Utils;
 import me.naspo.numbercruncher.datamanagement.AccountManager;
-import me.naspo.numbercruncher.datamanagement.DataManager;
 import me.naspo.numbercruncher.menu.MenuManager;
 
 public class PlayMenu extends Menu {
@@ -13,26 +12,25 @@ public class PlayMenu extends Menu {
         this.accountManager = accountManager;
     }
 
-
     public void display() {
-        signIn();
+        accountManager.signIn();
+        selectDifficulty();
     }
 
-    private void signIn() {
-        System.out.println("Are you new? Press 1 to create an account.");
-        System.out.println("Already have an account? Press 2 to login.");
+    private void selectDifficulty() {
+        System.out.println("1 - EASY | 2 - MEDIUM | 3 - HARD");
+        System.out.println("Select a Difficulty");
+        System.out.println("Or enter \"4\" to go back...");
 
-        switch (Utils.getInt(1, 2)) {
-            //Create an account.
-            case 1 -> {
-                System.out.print("What would you like your username to be? ");
-                accountManager.createAccount(scan.next());
-            }
-            //Login.
-            case 2 -> {
-
-            }
+        switch (Utils.getInt(1, 4)) {
+            //Easy
+            case 1 -> //send them to easy
+            //Medium
+            case 2 -> //send them to medium
+            //Hard
+            case 3 -> //send them to hard
+            //Go back to welcome screen.
+            case 4 -> menuManager.getWelcomeScreen().display();
         }
-
     }
 }

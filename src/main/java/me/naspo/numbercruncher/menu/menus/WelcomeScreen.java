@@ -20,8 +20,11 @@ public class WelcomeScreen extends Menu {
 
     private void input() {
         switch (Utils.getInt(1, 3)) {
+            //Play
             case 1 -> playGame();
+            //How to Play
             case 2 -> howToPlay();
+            //Leaderboard
             case 3 -> leaderboard();
         }
     }
@@ -31,10 +34,10 @@ public class WelcomeScreen extends Menu {
     }
 
     private void howToPlay() {
-
+        menuManager.getTutorialMenu().display();
     }
 
     private void leaderboard() {
-
+        menuManager.getLeaderboardMenu().display();
     }
 }
