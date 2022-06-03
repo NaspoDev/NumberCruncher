@@ -1,8 +1,6 @@
-package me.naspo.numbercruncher.menu.menus;
+package me.naspo.numbercruncher.menustuff.menus;
 
-import com.google.gson.internal.bind.util.ISO8601Utils;
-import me.naspo.numbercruncher.Utils;
-import me.naspo.numbercruncher.menu.MenuManager;
+import me.naspo.numbercruncher.menustuff.MenuManager;
 
 public class TutorialMenu extends Menu {
 

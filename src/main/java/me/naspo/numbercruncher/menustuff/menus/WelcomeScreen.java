@@ -1,7 +1,7 @@
-package me.naspo.numbercruncher.menu.menus;
+package me.naspo.numbercruncher.menustuff.menus;
 
 import me.naspo.numbercruncher.Utils;
-import me.naspo.numbercruncher.menu.MenuManager;
+import me.naspo.numbercruncher.menustuff.MenuManager;
 
 public class WelcomeScreen extends Menu {
 

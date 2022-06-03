@@ -42,4 +42,9 @@ public class Utils {
     public static String removeExtension(String name) {
         return name.substring(0, name.lastIndexOf('.'));
     }
+
+    //Delays for a specified amount of time (ms).
+    public static void wait(int milliseconds) {
+        //write logic
+    }
 }

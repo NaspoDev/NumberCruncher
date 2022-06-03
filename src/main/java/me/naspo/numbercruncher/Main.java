@@ -2,7 +2,7 @@ package me.naspo.numbercruncher;
 
 import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.datamanagement.DataManager;
-import me.naspo.numbercruncher.menu.MenuManager;
+import me.naspo.numbercruncher.menustuff.MenuManager;
 
 public class Main {
 

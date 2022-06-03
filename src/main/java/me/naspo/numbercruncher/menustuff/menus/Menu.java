@@ -1,6 +1,6 @@
-package me.naspo.numbercruncher.menu.menus;
+package me.naspo.numbercruncher.menustuff.menus;
 
-import me.naspo.numbercruncher.menu.MenuManager;
+import me.naspo.numbercruncher.menustuff.MenuManager;
 
 import java.util.Scanner;
 

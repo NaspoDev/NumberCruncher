@@ -1,10 +1,10 @@
-package me.naspo.numbercruncher.menu;
+package me.naspo.numbercruncher.menustuff;
 
 import me.naspo.numbercruncher.datamanagement.AccountManager;
-import me.naspo.numbercruncher.menu.menus.TutorialMenu;
-import me.naspo.numbercruncher.menu.menus.LeaderboardMenu;
-import me.naspo.numbercruncher.menu.menus.PlayMenu;
-import me.naspo.numbercruncher.menu.menus.WelcomeScreen;
+import me.naspo.numbercruncher.menustuff.menus.TutorialMenu;
+import me.naspo.numbercruncher.menustuff.menus.LeaderboardMenu;
+import me.naspo.numbercruncher.menustuff.menus.PlayMenu;
+import me.naspo.numbercruncher.menustuff.menus.WelcomeScreen;
 
 public class MenuManager {
 
