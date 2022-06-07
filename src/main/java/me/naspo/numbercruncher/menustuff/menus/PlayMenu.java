@@ -4,7 +4,7 @@ import me.naspo.numbercruncher.Utils;
 import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.menustuff.MenuManager;
 
-public class PlayMenu extends Menu {
+public class PlayMenu extends MenuCore {
 
     private AccountManager accountManager;
     public PlayMenu(MenuManager menuManager, AccountManager accountManager) {

@@ -4,12 +4,12 @@ import me.naspo.numbercruncher.menustuff.MenuManager;
 
 import java.util.Scanner;
 
-public abstract class Menu {
+public abstract class MenuCore {
 
     protected final Scanner scan = new Scanner(System.in);
     protected MenuManager menuManager;
 
-    Menu(MenuManager menuManager) {
+    MenuCore(MenuManager menuManager) {
      this.menuManager = menuManager;
     }
 

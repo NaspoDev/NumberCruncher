@@ -1,6 +1,8 @@
 package me.naspo.numbercruncher;
 
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Utils {
 
@@ -45,6 +47,11 @@ public class Utils {
 
     //Delays for a specified amount of time (ms).
     public static void wait(int milliseconds) {
-        //write logic
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+            }
+        }, milliseconds);
     }
 }

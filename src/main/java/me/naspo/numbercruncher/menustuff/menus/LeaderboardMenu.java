@@ -7,7 +7,7 @@ import me.naspo.numbercruncher.menustuff.MenuManager;
 
 import java.util.*;
 
-public class LeaderboardMenu extends Menu {
+public class LeaderboardMenu extends MenuCore {
 
     private AccountManager accountManager;
     public LeaderboardMenu(MenuManager menuManager, AccountManager accountManager) {

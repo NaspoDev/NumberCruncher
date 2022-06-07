@@ -2,7 +2,7 @@ package me.naspo.numbercruncher.levelstuff.levels;
 
 import me.naspo.numbercruncher.levelstuff.LevelManager;
 
-public class Hard extends Level {
+public class Hard extends LevelCore {
 
     Hard(LevelManager levelManager) {
         super(levelManager);
@@ -10,6 +10,31 @@ public class Hard extends Level {
 
     @Override
     public void start() {
+
+    }
+
+    @Override
+    void intro() {
+
+    }
+
+    @Override
+    void setupQuestion() {
+
+    }
+
+    @Override
+    int evaluateAnswer() {
+        return 0;
+    }
+
+    @Override
+    void qAndA() {
+
+    }
+
+    @Override
+    void gameOver() {
 
     }
 }

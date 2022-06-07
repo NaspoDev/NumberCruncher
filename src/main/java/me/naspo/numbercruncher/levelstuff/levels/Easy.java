@@ -2,10 +2,15 @@ package me.naspo.numbercruncher.levelstuff.levels;
 
 import me.naspo.numbercruncher.Utils;
 import me.naspo.numbercruncher.levelstuff.LevelManager;
-import me.naspo.numbercruncher.levelstuff.enums.Levels;
-import me.naspo.numbercruncher.levelstuff.enums.Operators;
+import me.naspo.numbercruncher.levelstuff.enums.Level;
 
-public class Easy extends Level {
+/*
+Easy Level
+Question Types: Up to triple digit addition/subtraction with two numbers.
+Timer: No
+Strikes: 3
+*/
+public class Easy extends LevelCore {
 
     Easy(LevelManager levelManager) {
         super(levelManager);
@@ -13,9 +18,20 @@ public class Easy extends Level {
 
     @Override
     public void start() {
+        strikes = 3;
         intro();
         Utils.wait(5000);
         super.countDown();
+
+        //Practically infinite cycle of generating and answering questions until the player runs out of strikes.
+        for (int question = 1; strikes > 0; question++) {
+            System.out.println("Question #" + question);
+            setupQuestion();
+            evaluateAnswer();
+            qAndA();
+        }
+
+        gameOver();
     }
 
     @Override
@@ -30,24 +46,47 @@ public class Easy extends Level {
     void setupQuestion() {
         num1 = rand.nextInt(999) + 1;
         num2 = rand.nextInt(999) + 1;
-        operator = super.getRandomOperator(Levels.EASY);
+        operator = super.getRandomOperator(Level.EASY);
         answer = evaluateAnswer();
     }
 
 
     @Override
     int evaluateAnswer() {
-        if (operator == Operators.ADDITION) {
-            return num1 + num2;
-        } else if (operator == Operators.SUBTRACTION) {
-            return num1 - num2;
+        switch (operator) {
+            case ADDITION -> {
+                return num1 + num2;
+            }
+            case SUBTRACTION -> {
+                return num1 - num2;
+            }
         }
         return 0;
     }
 
     @Override
     void qAndA() {
-        System.out.println("What is " + num1 + " " + operator);
+        System.out.println("What is " + num1 + " " + operator.getValue() + " " + num2 + "?");
+
+        //If they answered correctly...
+        if (Utils.getInt() == answer) {
+            System.out.println("You got that right! +10 points.");
+            points = points + 10;
+            return;
+        }
+        //If they answered incorrectly...
+        System.out.println("Incorrect! The correct answer is: " + answer + ".");
+        strikes--;
+        System.out.println("-1 strikes! Strikes remaining: " + strikes + ".");
+    }
+
+    @Override
+    void gameOver() {
+        System.out.println("You just used up your last strike. Game over!");
+        //display score
+        //if it's a new high-score, tell them and add it to their account
+        //thanks for playing
+        //close program
     }
 
 }

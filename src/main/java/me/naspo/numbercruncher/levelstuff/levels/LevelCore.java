@@ -1,31 +1,35 @@
 package me.naspo.numbercruncher.levelstuff.levels;
 
 import me.naspo.numbercruncher.levelstuff.LevelManager;
-import me.naspo.numbercruncher.levelstuff.enums.Levels;
-import me.naspo.numbercruncher.levelstuff.enums.Operators;
+import me.naspo.numbercruncher.levelstuff.enums.Level;
+import me.naspo.numbercruncher.levelstuff.enums.Operator;
 
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public abstract class Level {
+//Abstract Level class. Contains level class structure and other important methods.
+public abstract class LevelCore {
 
     protected final Scanner scan = new Scanner(System.in);
     protected Random rand = new Random();
     protected final Timer timer = new Timer();
     protected LevelManager levelManager;
 
+    protected int strikes = 0;
+    protected int points = 0;
     protected int num1 = 0;
     protected int num2 = 0;
     protected int num3 = 0;
     protected int num4 = 0;
-    Enum<Operators> operator = null;
+    protected Operator operator = null;
     protected int answer = 0;
 
+    //Used for countDown() method.
     private int currentCount = 3;
 
-    Level(LevelManager levelManager) {
+    LevelCore(LevelManager levelManager) {
         this.levelManager = levelManager;
     }
 
@@ -39,6 +43,8 @@ public abstract class Level {
     abstract int evaluateAnswer();
     //Creating and displaying a question, and receiving an answer.
     abstract void qAndA();
+    //Game over logic. Displaying and saving stats, and closing the program.
+    abstract void gameOver();
 
     //Displays a countdown from 3. Used to countdown level start.
     protected void countDown() {
@@ -61,7 +67,7 @@ public abstract class Level {
     }
 
     //Returns a random operator. (Takes what operators to return based on enum level).
-    protected Enum<Operators> getRandomOperator(Enum<Levels> level) {
+    protected Operator getRandomOperator(Level level) {
         //0 = "+"
         //1 = "-"
         //2 = "*"
@@ -71,27 +77,25 @@ public abstract class Level {
         int val = 0;
 
         //Checking which level we are returning an operator for, and setting the bounds of val accordingly.
-        if (level == Levels.EASY) {
-            val = rand.nextInt(2);
-        } else if (level == Levels.MEDIUM) {
-            val = rand.nextInt(3);
-        } else if (level == Levels.HARD) {
-            val = rand.nextInt(4);
+        switch (level) {
+            case EASY -> val = rand.nextInt(2);
+            case MEDIUM -> val = rand.nextInt(3);
+            case HARD -> val = rand.nextInt(4);
         }
 
         //Determining which type of operator to return.
         switch (val) {
             case 0 -> {
-                return Operators.ADDITION;
+                return Operator.ADDITION;
             }
             case 1 -> {
-                return Operators.SUBTRACTION;
+                return Operator.SUBTRACTION;
             }
             case 2 -> {
-                return Operators.MULTIPLICATION;
+                return Operator.MULTIPLICATION;
             }
             case 3 -> {
-                return Operators.DIVISION;
+                return Operator.DIVISION;
             }
         }
         return null;
