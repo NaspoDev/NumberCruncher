@@ -2,7 +2,7 @@ package me.naspo.numbercruncher.menustuff.menus;
 
 import me.naspo.numbercruncher.menustuff.MenuManager;
 
-public class TutorialMenu extends MenuCore {
+public class TutorialMenu extends MenuStructure {
 
 
     public TutorialMenu(MenuManager menuManager) {

@@ -2,6 +2,7 @@ package me.naspo.numbercruncher;
 
 import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.datamanagement.DataManager;
+import me.naspo.numbercruncher.levelstuff.LevelManager;
 import me.naspo.numbercruncher.menustuff.MenuManager;
 
 public class Main {
@@ -9,7 +10,7 @@ public class Main {
     private AccountManager accountManager;
     private DataManager dataManager;
     private MenuManager menuManager;
-    //new LevelManager? or something w/ object classes
+    private LevelManager levelManager;
 
     //Startup method.
     public static void main(String[] args) {
@@ -37,6 +38,8 @@ public class Main {
         accountManager = new AccountManager();
         dataManager = new DataManager(accountManager);
         menuManager = new MenuManager(accountManager);
+        levelManager = new LevelManager(accountManager);
+        menuManager.setLevelManager(levelManager);
     }
 
     //Start the game by displaying the welcome screen.

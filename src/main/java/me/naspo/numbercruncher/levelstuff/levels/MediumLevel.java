@@ -1,11 +1,12 @@
 package me.naspo.numbercruncher.levelstuff.levels;
 
+import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.levelstuff.LevelManager;
 
-public class Hard extends LevelCore {
+public class MediumLevel extends LevelStructure {
 
-    Hard(LevelManager levelManager) {
-        super(levelManager);
+    public MediumLevel(LevelManager levelManager, AccountManager accountManager) {
+        super(levelManager, accountManager);
     }
 
     @Override

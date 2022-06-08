@@ -3,7 +3,7 @@ package me.naspo.numbercruncher.menustuff.menus;
 import me.naspo.numbercruncher.Utils;
 import me.naspo.numbercruncher.menustuff.MenuManager;
 
-public class WelcomeScreen extends MenuCore {
+public class WelcomeScreen extends MenuStructure {
 
     public WelcomeScreen(MenuManager menuManager) {
         super(menuManager);

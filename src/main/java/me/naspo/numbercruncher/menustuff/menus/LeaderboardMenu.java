@@ -3,11 +3,12 @@ package me.naspo.numbercruncher.menustuff.menus;
 import me.naspo.numbercruncher.Utils;
 import me.naspo.numbercruncher.datamanagement.Account;
 import me.naspo.numbercruncher.datamanagement.AccountManager;
+import me.naspo.numbercruncher.levelstuff.LevelManager;
 import me.naspo.numbercruncher.menustuff.MenuManager;
 
 import java.util.*;
 
-public class LeaderboardMenu extends MenuCore {
+public class LeaderboardMenu extends MenuStructure {
 
     private AccountManager accountManager;
     public LeaderboardMenu(MenuManager menuManager, AccountManager accountManager) {

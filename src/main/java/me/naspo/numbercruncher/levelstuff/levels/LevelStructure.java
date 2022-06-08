@@ -1,5 +1,6 @@
 package me.naspo.numbercruncher.levelstuff.levels;
 
+import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.levelstuff.LevelManager;
 import me.naspo.numbercruncher.levelstuff.enums.Level;
 import me.naspo.numbercruncher.levelstuff.enums.Operator;
@@ -10,12 +11,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 //Abstract Level class. Contains level class structure and other important methods.
-public abstract class LevelCore {
+public abstract class LevelStructure {
 
     protected final Scanner scan = new Scanner(System.in);
     protected Random rand = new Random();
     protected final Timer timer = new Timer();
     protected LevelManager levelManager;
+    protected AccountManager accountManager;
 
     protected int strikes = 0;
     protected int points = 0;
@@ -29,8 +31,9 @@ public abstract class LevelCore {
     //Used for countDown() method.
     private int currentCount = 3;
 
-    LevelCore(LevelManager levelManager) {
+    LevelStructure(LevelManager levelManager, AccountManager accountManager) {
         this.levelManager = levelManager;
+        this.accountManager = accountManager;
     }
 
     //Called to start the level. Operation management method.

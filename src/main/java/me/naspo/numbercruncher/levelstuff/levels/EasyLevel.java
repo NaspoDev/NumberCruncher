@@ -1,6 +1,7 @@
 package me.naspo.numbercruncher.levelstuff.levels;
 
 import me.naspo.numbercruncher.Utils;
+import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.levelstuff.LevelManager;
 import me.naspo.numbercruncher.levelstuff.enums.Level;
 
@@ -10,10 +11,10 @@ Question Types: Up to triple digit addition/subtraction with two numbers.
 Timer: No
 Strikes: 3
 */
-public class Easy extends LevelCore {
+public class EasyLevel extends LevelStructure {
 
-    Easy(LevelManager levelManager) {
-        super(levelManager);
+    public EasyLevel(LevelManager levelManager, AccountManager accountManager) {
+        super(levelManager, accountManager);
     }
 
     @Override
@@ -42,6 +43,7 @@ public class Easy extends LevelCore {
         System.out.println("Strikes: 3");
     }
 
+    //Getting two numbers, one random operator, and storing the answer.
     @Override
     void setupQuestion() {
         num1 = rand.nextInt(999) + 1;
@@ -49,7 +51,6 @@ public class Easy extends LevelCore {
         operator = super.getRandomOperator(Level.EASY);
         answer = evaluateAnswer();
     }
-
 
     @Override
     int evaluateAnswer() {
@@ -83,10 +84,18 @@ public class Easy extends LevelCore {
     @Override
     void gameOver() {
         System.out.println("You just used up your last strike. Game over!");
-        //display score
-        //if it's a new high-score, tell them and add it to their account
-        //thanks for playing
-        //close program
+
+        //If they have a new high-score, display it and store it.
+        if (points > accountManager.getSessionAccount().getEasyHighScore()) {
+            System.out.println("New high-score! Score: " + points + " points.");
+            //Otherwise not a high-score, just display points.
+        } else {
+            System.out.println("Your score: " + points + " points");
+        }
+
+        System.out.println("Thanks for playing!");
+        //Close the program.
+        System.exit(0);
     }
 
 }

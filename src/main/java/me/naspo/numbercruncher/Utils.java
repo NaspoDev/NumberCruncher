@@ -13,7 +13,7 @@ public class Utils {
     public static int getInt() {
         do {
             try {
-                return scan.nextInt();
+                return Integer.parseInt(scan.nextLine());
             } catch (Exception e) {
                 System.out.print("Please enter a valid integer: ");
             }
@@ -26,7 +26,7 @@ public class Utils {
     public static int getInt(int rangeLowest, int rangeHighest) {
         do {
             try {
-                int input = scan.nextInt();
+                int input = Integer.parseInt(scan.nextLine());
                 if (input >= rangeLowest && input <= rangeHighest) {
                     return input;
                 } else {
@@ -47,11 +47,6 @@ public class Utils {
 
     //Delays for a specified amount of time (ms).
     public static void wait(int milliseconds) {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-            }
-        }, milliseconds);
+        //write logic
     }
 }
