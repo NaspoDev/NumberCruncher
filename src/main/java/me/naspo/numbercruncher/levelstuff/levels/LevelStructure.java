@@ -1,5 +1,6 @@
 package me.naspo.numbercruncher.levelstuff.levels;
 
+import me.naspo.numbercruncher.Utils;
 import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.levelstuff.LevelManager;
 import me.naspo.numbercruncher.levelstuff.enums.Level;
@@ -49,16 +50,26 @@ public abstract class LevelStructure {
     //Game over logic. Displaying and saving stats, and closing the program.
     abstract void gameOver();
 
+
     //Displays a countdown from 3. Used to countdown level start.
     protected void countDown() {
         System.out.println("Starting in...");
 
-        timer.scheduleAtFixedRate(new TimerTask() {
+        Utils.wait(1000);
+        System.out.println("3");
+        Utils.wait(1000);
+        System.out.println("2");
+        Utils.wait(1000);
+        System.out.println("1");
+        Utils.wait(1000);
+
+        //Old code. Replaced by ghetto code until a proper solution is found to the waiting issue.
+        /*timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 System.out.println(count());
             }
-        }, 1000, 1000);
+        }, 1000, 1000);*/
     }
 
     //Monitors and modifies currentCount object used in countDown() method.
