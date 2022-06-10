@@ -26,8 +26,10 @@ public abstract class LevelStructure {
     protected int num2 = 0;
     protected int num3 = 0;
     protected int num4 = 0;
-    protected Operator operator = null;
+    protected Operator operator1 = null;
+    protected Operator operator2 = null;
     protected int answer = 0;
+    protected boolean answered = false;
 
     //Used for countDown() method.
     private int currentCount = 3;

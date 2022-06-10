@@ -16,7 +16,7 @@ public enum Operator {
     }
 
     //Getter for the enum's char value.
-    public char getValue() {
+    public char asChar() {
         return charValue;
     }
 

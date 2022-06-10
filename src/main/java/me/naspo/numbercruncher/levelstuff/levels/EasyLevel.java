@@ -28,7 +28,6 @@ public class EasyLevel extends LevelStructure {
         for (int question = 1; strikes > 0; question++) {
             System.out.println("Question #" + question);
             setupQuestion();
-            evaluateAnswer();
             qAndA();
         }
 
@@ -48,13 +47,13 @@ public class EasyLevel extends LevelStructure {
     void setupQuestion() {
         num1 = rand.nextInt(999) + 1;
         num2 = rand.nextInt(999) + 1;
-        operator = super.getRandomOperator(Level.EASY);
+        operator1 = super.getRandomOperator(Level.EASY);
         answer = evaluateAnswer();
     }
 
     @Override
     int evaluateAnswer() {
-        switch (operator) {
+        switch (operator1) {
             case ADDITION -> {
                 return num1 + num2;
             }
@@ -67,7 +66,7 @@ public class EasyLevel extends LevelStructure {
 
     @Override
     void qAndA() {
-        System.out.println("What is " + num1 + " " + operator.getValue() + " " + num2 + "?");
+        System.out.println("What is " + num1 + " " + operator1.asChar() + " " + num2 + "?");
 
         //If they answered correctly...
         if (Utils.getInt() == answer) {
