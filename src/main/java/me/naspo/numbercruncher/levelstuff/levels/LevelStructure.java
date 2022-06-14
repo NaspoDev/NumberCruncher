@@ -16,7 +16,7 @@ public abstract class LevelStructure {
 
     protected final Scanner scan = new Scanner(System.in);
     protected Random rand = new Random();
-    protected final Timer timer = new Timer();
+    protected Timer timer = new Timer();
     protected LevelManager levelManager;
     protected AccountManager accountManager;
     protected Main game;
@@ -30,7 +30,7 @@ public abstract class LevelStructure {
     protected Operator operator1 = null;
     protected Operator operator2 = null;
     protected int answer = 0;
-    protected boolean answered = false;
+    protected boolean outOfTime = false;
 
     //Used for countDown() method.
     private int currentCount = 3;

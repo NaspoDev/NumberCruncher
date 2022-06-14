@@ -7,6 +7,7 @@ import me.naspo.numbercruncher.levelstuff.LevelManager;
 import me.naspo.numbercruncher.levelstuff.enums.Level;
 import me.naspo.numbercruncher.levelstuff.enums.Operator;
 
+import java.util.Timer;
 import java.util.TimerTask;
 
 public class MediumLevel extends LevelStructure {
@@ -24,8 +25,7 @@ public class MediumLevel extends LevelStructure {
 
         //Practically infinite cycle of generating and answering questions until the player runs out of strikes.
         for (int question = 1; strikes > 0; question++) {
-            //isolatedScannerThread.start();
-            answered = false;
+            outOfTime = false;
             System.out.println("Question #" + question);
             setupQuestion();
             qAndA();
@@ -81,35 +81,49 @@ public class MediumLevel extends LevelStructure {
 
         startTimer();
 
-        //Get answer logic.
-        //If they answered correctly...
+        // --- Get answer logic ---
 
+        //If they answered correctly...
         if (Utils.getInt() == answer) {
-            answered = true;
             timer.cancel();
-            System.out.println("You got that right! +10 points.");
-            points = points + 10;
+            //If they ran out of time.
+            if (outOfTime) {
+                System.out.println("You got that right, but you ran out of time!");
+                strikes--;
+                System.out.println("-1 strikes! Strikes remaining: " + strikes + ".");
+                //Otherwise
+            } else {
+                System.out.println("You got that right! +10 points.");
+                points = points + 10;
+            }
             return;
         }
+
+        timer.cancel();
         //If they answered incorrectly...
-        answered = true;
-        //timer.cancel();
-        System.out.println("Incorrect! The correct answer is: " + answer + ".");
-        strikes--;
-        System.out.println("-1 strikes! Strikes remaining: " + strikes + ".");
+        //And if they were out of time.
+        if (outOfTime) {
+            System.out.println("Incorrect! The correct answer is: " + answer + ".");
+            System.out.println("You also ran out of time on that question.");
+            strikes--;
+            System.out.println("-1 strikes! Strikes remaining: " + strikes + ".");
+            //Otherwise
+        } else {
+            System.out.println("Incorrect! The correct answer is: " + answer + ".");
+            strikes--;
+            System.out.println("-1 strikes! Strikes remaining: " + strikes + ".");
+        }
     }
 
 
     private void startTimer() {
+        //Re-initializing timer because you cannot re-schedule a task on a cancelled timer.
+        timer = new Timer();
+        //Schedule the timer task.
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (!(answered)) {
-                    //skip the scanner
-                    System.out.println("Time up! You're too slow this time.");
-                    System.out.println("The correct answer was: " + answer + ".");
-                    System.out.println("-1 strikes! Strikes remaining: " + strikes + ".");
-                }
+                outOfTime = true;
             }
         }, 5000);
     }
