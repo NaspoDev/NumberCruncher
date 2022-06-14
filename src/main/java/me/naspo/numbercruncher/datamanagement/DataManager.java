@@ -29,7 +29,7 @@ public class DataManager {
 
     //Creates the NumberCruncher folder.
     private void mkdirs() {
-        dir = new File(System.getenv("ProgramFiles"), "NumberCruncher");
+        dir = new File(System.getProperty("user.home") + "\\Documents", "NumberCruncher");
         if (!(dir.exists())) {
             try {
                 dir.mkdirs();
@@ -63,7 +63,7 @@ public class DataManager {
                 }
             }
 
-            //Load the file as a Yaml configuaration and make the edits.
+            //Load the file as a Yaml configuration and make the edits.
             playerConfig = YamlConfiguration.loadConfiguration(playerFile);
 
             playerConfig.set("username", account.getUsername());
@@ -83,7 +83,7 @@ public class DataManager {
 
     //Restores data from files to the hashmap.
     public void restorePlayerData() {
-        if (dir.length() == 0) {
+        if (dirListings.length == 0) {
             return;
         }
         for (File file : dirListings) {

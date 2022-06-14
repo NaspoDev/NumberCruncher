@@ -1,5 +1,6 @@
 package me.naspo.numbercruncher.levelstuff.levels;
 
+import me.naspo.numbercruncher.Main;
 import me.naspo.numbercruncher.Utils;
 import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.levelstuff.LevelManager;
@@ -9,7 +10,6 @@ import me.naspo.numbercruncher.levelstuff.enums.Operator;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
-import java.util.TimerTask;
 
 //Abstract Level class. Contains level class structure and other important methods.
 public abstract class LevelStructure {
@@ -19,6 +19,7 @@ public abstract class LevelStructure {
     protected final Timer timer = new Timer();
     protected LevelManager levelManager;
     protected AccountManager accountManager;
+    protected Main game;
 
     protected int strikes = 0;
     protected int points = 0;
@@ -34,9 +35,10 @@ public abstract class LevelStructure {
     //Used for countDown() method.
     private int currentCount = 3;
 
-    LevelStructure(LevelManager levelManager, AccountManager accountManager) {
+    LevelStructure(LevelManager levelManager, AccountManager accountManager, Main game) {
         this.levelManager = levelManager;
         this.accountManager = accountManager;
+        this.game = game;
     }
 
     //Called to start the level. Operation management method.
@@ -64,14 +66,6 @@ public abstract class LevelStructure {
         Utils.wait(1000);
         System.out.println("1");
         Utils.wait(1000);
-
-        //Old code. Replaced by ghetto code until a proper solution is found to the waiting issue.
-        /*timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                System.out.println(count());
-            }
-        }, 1000, 1000);*/
     }
 
     //Monitors and modifies currentCount object used in countDown() method.

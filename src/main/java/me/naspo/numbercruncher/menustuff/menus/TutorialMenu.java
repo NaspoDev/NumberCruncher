@@ -40,7 +40,7 @@ public class TutorialMenu extends MenuStructure {
     }
 
     private void goBack() {
-        System.out.println("\nWhenever you're ready, press any key to go back");
+        System.out.println("\nWhenever you're ready, enter anything to go back...");
         if (scan.next() != null) {
             menuManager.getWelcomeScreen().display();
         }

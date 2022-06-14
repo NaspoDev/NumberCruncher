@@ -1,5 +1,6 @@
 package me.naspo.numbercruncher.levelstuff.levels;
 
+import me.naspo.numbercruncher.Main;
 import me.naspo.numbercruncher.Utils;
 import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.levelstuff.LevelManager;
@@ -13,8 +14,8 @@ Strikes: 3
 */
 public class EasyLevel extends LevelStructure {
 
-    public EasyLevel(LevelManager levelManager, AccountManager accountManager) {
-        super(levelManager, accountManager);
+    public EasyLevel(LevelManager levelManager, AccountManager accountManager, Main game) {
+        super(levelManager, accountManager, game);
     }
 
     @Override
@@ -86,6 +87,7 @@ public class EasyLevel extends LevelStructure {
 
         //If they have a new high-score, display it and store it.
         if (points > accountManager.getSessionAccount().getEasyHighScore()) {
+            accountManager.getSessionAccount().setEasyHighScore(points);
             System.out.println("New high-score! Score: " + points + " points.");
             //Otherwise not a high-score, just display points.
         } else {
@@ -93,8 +95,8 @@ public class EasyLevel extends LevelStructure {
         }
 
         System.out.println("Thanks for playing!");
-        //Close the program.
-        System.exit(0);
+        //End the game.
+        game.end();
     }
 
 }

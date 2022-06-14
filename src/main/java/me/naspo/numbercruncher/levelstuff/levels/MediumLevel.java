@@ -1,5 +1,6 @@
 package me.naspo.numbercruncher.levelstuff.levels;
 
+import me.naspo.numbercruncher.Main;
 import me.naspo.numbercruncher.Utils;
 import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.levelstuff.LevelManager;
@@ -10,19 +11,20 @@ import java.util.TimerTask;
 
 public class MediumLevel extends LevelStructure {
 
-    public MediumLevel(LevelManager levelManager, AccountManager accountManager) {
-        super(levelManager, accountManager);
+    public MediumLevel(LevelManager levelManager, AccountManager accountManager, Main game) {
+        super(levelManager, accountManager, game);
     }
 
     @Override
     public void start() {
-        strikes = 1;
+        strikes = 2;
         intro();
         Utils.wait(5000);
         super.countDown();
 
         //Practically infinite cycle of generating and answering questions until the player runs out of strikes.
         for (int question = 1; strikes > 0; question++) {
+            //isolatedScannerThread.start();
             answered = false;
             System.out.println("Question #" + question);
             setupQuestion();
@@ -38,7 +40,7 @@ public class MediumLevel extends LevelStructure {
         System.out.println("Question Types: Multiplication (within times table range) along with addition or subtraction");
         System.out.println("(single or double digit).");
         System.out.println("Timer: 1 min/question");
-        System.out.println("Strikes: 1");
+        System.out.println("Strikes: 2");
     }
 
     @Override
@@ -81,6 +83,7 @@ public class MediumLevel extends LevelStructure {
 
         //Get answer logic.
         //If they answered correctly...
+
         if (Utils.getInt() == answer) {
             answered = true;
             timer.cancel();
@@ -89,28 +92,26 @@ public class MediumLevel extends LevelStructure {
             return;
         }
         //If they answered incorrectly...
-        answered = false;
-        timer.cancel();
+        answered = true;
+        //timer.cancel();
         System.out.println("Incorrect! The correct answer is: " + answer + ".");
         strikes--;
         System.out.println("-1 strikes! Strikes remaining: " + strikes + ".");
     }
 
+
     private void startTimer() {
-        //Start the timer.
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (answered) {
-                    timer.cancel();
-                    //Time is up.
-                } else {
+                if (!(answered)) {
+                    //skip the scanner
                     System.out.println("Time up! You're too slow this time.");
                     System.out.println("The correct answer was: " + answer + ".");
                     System.out.println("-1 strikes! Strikes remaining: " + strikes + ".");
                 }
             }
-        }, 60000);
+        }, 5000);
     }
 
     @Override
@@ -119,6 +120,7 @@ public class MediumLevel extends LevelStructure {
 
         //If they have a new high-score, display it and store it.
         if (points > accountManager.getSessionAccount().getEasyHighScore()) {
+            accountManager.getSessionAccount().setMediumHighScore(points);
             System.out.println("New high-score! Score: " + points + " points.");
             //Otherwise not a high-score, just display points.
         } else {
@@ -126,7 +128,7 @@ public class MediumLevel extends LevelStructure {
         }
 
         System.out.println("Thanks for playing!");
-        //Close the program.
-        System.exit(0);
+        //End the game.
+        game.end();
     }
 }

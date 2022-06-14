@@ -1,5 +1,6 @@
 package me.naspo.numbercruncher.levelstuff;
 
+import me.naspo.numbercruncher.Main;
 import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.levelstuff.levels.EasyLevel;
 import me.naspo.numbercruncher.levelstuff.levels.HardLevel;
@@ -12,13 +13,15 @@ public class LevelManager {
     private HardLevel hardLevel;
 
     private AccountManager accountManager;
+    private Main game;
 
-    public LevelManager(AccountManager accountManager) {
+    public LevelManager(AccountManager accountManager, Main game) {
         this.accountManager = accountManager;
+        this.game = game;
 
-        easyLevel = new EasyLevel(this, accountManager);
-        mediumLevel = new MediumLevel(this, accountManager);
-        hardLevel = new HardLevel(this, accountManager);
+        easyLevel = new EasyLevel(this, accountManager, game);
+        mediumLevel = new MediumLevel(this, accountManager, game);
+        hardLevel = new HardLevel(this, accountManager, game);
     }
 
     // --- Level starters ---

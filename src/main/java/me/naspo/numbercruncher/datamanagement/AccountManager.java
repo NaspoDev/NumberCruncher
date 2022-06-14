@@ -45,7 +45,9 @@ public class AccountManager {
             if (accountList.stream()
                     .anyMatch(account -> account.getUsername().equalsIgnoreCase(username))) {
                 System.out.println("An account with that username already exists!");
-                System.out.print("Please try again: ");
+                signIn();
+                break;
+                //System.out.print("Please try again: ");
 
                 //Otherwise, their username is unique, and an account can be created.
             } else {

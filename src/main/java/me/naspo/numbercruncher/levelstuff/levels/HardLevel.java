@@ -1,12 +1,13 @@
 package me.naspo.numbercruncher.levelstuff.levels;
 
+import me.naspo.numbercruncher.Main;
 import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.levelstuff.LevelManager;
 
 public class HardLevel extends LevelStructure {
 
-    public HardLevel(LevelManager levelManager, AccountManager accountManager) {
-        super(levelManager, accountManager);
+    public HardLevel(LevelManager levelManager, AccountManager accountManager, Main game) {
+        super(levelManager, accountManager, game);
     }
 
     @Override

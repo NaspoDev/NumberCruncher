@@ -19,26 +19,19 @@ public class Main {
         game.instantiateClasses();
         game.dataManager.restorePlayerData();
         game.start();
-
-        //Runtime event for program end.
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                game.onDisable();
-            }
-        }));
     }
 
-    //Called when the program finishes.
-    public void onDisable() {
+    //End the game and terminate the program.
+    public void end() {
         dataManager.savePlayerData();
+        System.exit(0);
     }
 
     private void instantiateClasses() {
         accountManager = new AccountManager();
         dataManager = new DataManager(accountManager);
         menuManager = new MenuManager(accountManager);
-        levelManager = new LevelManager(accountManager);
+        levelManager = new LevelManager(accountManager, this);
         menuManager.setLevelManager(levelManager);
     }
 
