@@ -60,13 +60,13 @@ public class LeaderboardMenu extends MenuStructure {
         System.out.println("Medium Leaderboard");
         System.out.format("%-10s %10s %n", "Username", "High-score");
 
-        //Add all the usernames and their easy high-scores in a hashmap.
+        //Add all the usernames and their medium high-scores in a hashmap.
         HashMap<String, Integer> mediumStatsUnsorted = new HashMap<>();
         for (Account account : accountManager.getAccountList()) {
-            mediumStatsUnsorted.put(account.getUsername(), account.getEasyHighScore());
+            mediumStatsUnsorted.put(account.getUsername(), account.getMediumHighScore());
         }
 
-        //Holds easyStatsUnsorted entries to be sorted with Collections.sort().
+        //Holds mediumStatsUnsorted entries to be sorted with Collections.sort().
         List<Map.Entry<String, Integer>> mediumStatsSorted = new ArrayList<>(mediumStatsUnsorted.entrySet());
         mediumStatsSorted = sortEntryList(mediumStatsSorted);
 
@@ -80,13 +80,13 @@ public class LeaderboardMenu extends MenuStructure {
         System.out.println("Medium Leaderboard");
         System.out.format("%-10s %10s %n", "Username", "High-score");
 
-        //Add all the usernames and their easy high-scores in a hashmap.
+        //Add all the usernames and their hard high-scores in a hashmap.
         HashMap<String, Integer> hardStatsUnsorted = new HashMap<>();
         for (Account account : accountManager.getAccountList()) {
-            hardStatsUnsorted.put(account.getUsername(), account.getEasyHighScore());
+            hardStatsUnsorted.put(account.getUsername(), account.getHardHighScore());
         }
 
-        //Holds easyStatsUnsorted entries to be sorted with Collections.sort().
+        //Holds hardStatsUnsorted entries to be sorted with Collections.sort().
         List<Map.Entry<String, Integer>> hardStatsSorted = new ArrayList<>(hardStatsUnsorted.entrySet());
         hardStatsSorted = sortEntryList(hardStatsSorted);
 

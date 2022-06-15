@@ -52,7 +52,7 @@ public class MediumLevel extends LevelStructure {
         num3 = rand.nextInt(99) + 1;
         operator1 = Operator.MULTIPLICATION;
         //operator2 needs to be either addition or subtraction, so Level.EASY enum is passed in.
-        operator2 = super.getRandomOperator(Level.EASY);
+        operator2 = super.getRandomOperator();
         answer = evaluateAnswer();
     }
 
@@ -125,7 +125,7 @@ public class MediumLevel extends LevelStructure {
             public void run() {
                 outOfTime = true;
             }
-        }, 5000);
+        }, 60000);
     }
 
     @Override
@@ -133,7 +133,7 @@ public class MediumLevel extends LevelStructure {
         System.out.println("You just used up your last strike. Game over!");
 
         //If they have a new high-score, display it and store it.
-        if (points > accountManager.getSessionAccount().getEasyHighScore()) {
+        if (points > accountManager.getSessionAccount().getMediumHighScore()) {
             accountManager.getSessionAccount().setMediumHighScore(points);
             System.out.println("New high-score! Score: " + points + " points.");
             //Otherwise not a high-score, just display points.

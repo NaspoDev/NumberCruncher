@@ -29,6 +29,7 @@ public abstract class LevelStructure {
     protected int num4 = 0;
     protected Operator operator1 = null;
     protected Operator operator2 = null;
+    protected Operator operator3 = null;
     protected int answer = 0;
     protected boolean outOfTime = false;
 
@@ -76,22 +77,14 @@ public abstract class LevelStructure {
         return currentCount--;
     }
 
-    //Returns a random operator. (Takes what operators to return based on enum level).
-    protected Operator getRandomOperator(Level level) {
+    //Returns a random operator of value '+' or '-'.
+    protected Operator getRandomOperator() {
         //0 = "+"
         //1 = "-"
-        //2 = "*"
-        //3 = "/"
 
-        //Random value (up to 3) to determine the operator to return.
+        //Random value (up to 1) to determine the operator to return.
         int val = 0;
-
-        //Checking which level we are returning an operator for, and setting the bounds of val accordingly.
-        switch (level) {
-            case EASY -> val = rand.nextInt(2);
-            case MEDIUM -> val = rand.nextInt(3);
-            case HARD -> val = rand.nextInt(4);
-        }
+        val = rand.nextInt(2);
 
         //Determining which type of operator to return.
         switch (val) {
@@ -100,12 +93,6 @@ public abstract class LevelStructure {
             }
             case 1 -> {
                 return Operator.SUBTRACTION;
-            }
-            case 2 -> {
-                return Operator.MULTIPLICATION;
-            }
-            case 3 -> {
-                return Operator.DIVISION;
             }
         }
         return null;

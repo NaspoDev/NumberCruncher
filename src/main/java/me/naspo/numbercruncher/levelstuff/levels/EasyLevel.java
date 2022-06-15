@@ -48,7 +48,7 @@ public class EasyLevel extends LevelStructure {
     void setupQuestion() {
         num1 = rand.nextInt(999) + 1;
         num2 = rand.nextInt(999) + 1;
-        operator1 = super.getRandomOperator(Level.EASY);
+        operator1 = super.getRandomOperator();
         answer = evaluateAnswer();
     }
 
