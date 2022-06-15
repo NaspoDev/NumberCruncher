@@ -37,7 +37,7 @@ public class AccountManager {
     private void createAccount() {
         //Initial prompts.
         System.out.println("Create an Account");
-        System.out.print("What would you like your username to be? ");
+        System.out.println("What would you like your username to be? ");
 
         do {
             //Gets a username input and checks if an account already exists with that username.
@@ -54,7 +54,7 @@ public class AccountManager {
                 Account account = new Account(username);
                 accountList.add(account);
                 sessionAccount = account;
-                System.out.println("Hello, " + username + ". Welcome to NumberCruncher!");
+                System.out.println("Hello, " + username + ". Welcome to NumberCruncher!\n");
                 break;
             }
         } while (loop);
@@ -63,7 +63,7 @@ public class AccountManager {
     //Logs the user in and sets their account as the session account.
     private void login() {
         System.out.println("Login");
-        System.out.print("What is your username? ");
+        System.out.println("What is your username? ");
 
         //Gets a username input and checks if there's an account with that username. If there is, it logs them
         // in by setting their account as the session account.
@@ -74,11 +74,11 @@ public class AccountManager {
             sessionAccount = accountList.stream()
                     .filter(account -> account.getUsername().equalsIgnoreCase(username))
                             .findFirst().get();
-            System.out.println("Welcome back " + sessionAccount.getUsername() + "!");
+            System.out.println("Welcome back " + sessionAccount.getUsername() + "!\n");
 
             //Otherwise, it returns them back to the main sign in menu.
         } else {
-            System.out.println("Unknown username!");
+            System.out.println("Unknown username!\n");
             signIn();
         }
     }

@@ -23,11 +23,12 @@ public class EasyLevel extends LevelStructure {
         strikes = 3;
         intro();
         Utils.wait(5000);
+        System.out.print("\n");
         super.countDown();
 
         //Practically infinite cycle of generating and answering questions until the player runs out of strikes.
         for (int question = 1; strikes > 0; question++) {
-            System.out.println("Question #" + question);
+            System.out.println("\nQuestion #" + question);
             setupQuestion();
             qAndA();
         }
@@ -37,7 +38,7 @@ public class EasyLevel extends LevelStructure {
 
     @Override
     void intro() {
-        System.out.println("Easy Level");
+        System.out.println("\n==========[ Easy Level ]==========");
         System.out.println("Question Types: Up to triple digit addition/subtraction with two numbers.");
         System.out.println("Timer: No");
         System.out.println("Strikes: 3");
@@ -83,7 +84,7 @@ public class EasyLevel extends LevelStructure {
 
     @Override
     void gameOver() {
-        System.out.println("You just used up your last strike. Game over!");
+        System.out.println("\nYou just used up your last strike. Game over!");
 
         //If they have a new high-score, display it and store it.
         if (points > accountManager.getSessionAccount().getEasyHighScore()) {

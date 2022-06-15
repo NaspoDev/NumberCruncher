@@ -19,7 +19,7 @@ public class LeaderboardMenu extends MenuStructure {
     //Displays main leaderboard screen and prompts the user to choose a leaderboard.
     @Override
     public void display() {
-        System.out.println("The LeaderBoard");
+        System.out.println("\n==========[ The Leaderboard ]==========");
         System.out.println("1 - Easy Leaderboard | 2 - Medium Leaderboard | 3 - Hard Leaderboard");
         System.out.println("Or enter \"4\" to go back...");
 
@@ -31,13 +31,16 @@ public class LeaderboardMenu extends MenuStructure {
             //Hard Leaderboard
             case 3 -> hardLeaderboard();
             //Go back to welcome screen.
-            case 4 -> menuManager.getWelcomeScreen().display();
+            case 4 -> {
+                System.out.print("\n");
+                menuManager.getWelcomeScreen().display();
+            }
         }
     }
 
     //Sorts and displays leaderboard stats in order of greatest to least.
     private void easyLeaderboard() {
-        System.out.println("Easy Leaderboard");
+        System.out.println("\n-----{ Easy Leaderboard }-----");
         System.out.format("%-10s %10s %n", "Username", "High-score");
 
         //Add all the usernames and their easy high-scores in a hashmap.
@@ -57,7 +60,7 @@ public class LeaderboardMenu extends MenuStructure {
     }
 
     private void mediumLeaderboard() {
-        System.out.println("Medium Leaderboard");
+        System.out.println("\n-----{ Medium Leaderboard }-----");
         System.out.format("%-10s %10s %n", "Username", "High-score");
 
         //Add all the usernames and their medium high-scores in a hashmap.
@@ -77,7 +80,7 @@ public class LeaderboardMenu extends MenuStructure {
     }
 
     private void hardLeaderboard() {
-        System.out.println("Medium Leaderboard");
+        System.out.println("\n-----{ Hard Leaderboard }-----");
         System.out.format("%-10s %10s %n", "Username", "High-score");
 
         //Add all the usernames and their hard high-scores in a hashmap.
@@ -110,7 +113,7 @@ public class LeaderboardMenu extends MenuStructure {
 
     //Go back to main leaderboard menu.
     private void backToLeaderboard() {
-        System.out.println("Whenever you're ready, enter anything to go back...");
+        System.out.println("\nWhenever you're ready, enter anything to go back...");
         if (scan.next() != null) {
             menuManager.getLeaderboardMenu().display();
         }

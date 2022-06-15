@@ -21,12 +21,13 @@ public class MediumLevel extends LevelStructure {
         strikes = 2;
         intro();
         Utils.wait(5000);
+        System.out.print("\n");
         super.countDown();
 
         //Practically infinite cycle of generating and answering questions until the player runs out of strikes.
         for (int question = 1; strikes > 0; question++) {
             outOfTime = false;
-            System.out.println("Question #" + question);
+            System.out.println("\nQuestion #" + question);
             setupQuestion();
             qAndA();
         }
@@ -36,7 +37,7 @@ public class MediumLevel extends LevelStructure {
 
     @Override
     void intro() {
-        System.out.println("Medium Level");
+        System.out.println("\n==========[ Medium Level ]==========");
         System.out.println("Question Types: Multiplication (within times table range) along with addition or subtraction");
         System.out.println("(single or double digit).");
         System.out.println("Timer: 1 min/question");
@@ -130,7 +131,7 @@ public class MediumLevel extends LevelStructure {
 
     @Override
     void gameOver() {
-        System.out.println("You just used up your last strike. Game over!");
+        System.out.println("\nYou just used up your last strike. Game over!");
 
         //If they have a new high-score, display it and store it.
         if (points > accountManager.getSessionAccount().getMediumHighScore()) {
