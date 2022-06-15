@@ -4,17 +4,15 @@ import me.naspo.numbercruncher.Main;
 import me.naspo.numbercruncher.Utils;
 import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.levelstuff.LevelManager;
-import me.naspo.numbercruncher.levelstuff.enums.Level;
 import me.naspo.numbercruncher.levelstuff.enums.Operator;
 
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
 
-//Abstract Level class. Contains level class structure and other important methods.
+//Abstract Level class. Contains level class structure and other important methods and objects.
 public abstract class LevelStructure {
 
-    protected final Scanner scan = new Scanner(System.in);
     protected Random rand = new Random();
     protected Timer timer = new Timer();
     protected LevelManager levelManager;

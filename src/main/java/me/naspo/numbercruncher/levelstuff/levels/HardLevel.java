@@ -9,6 +9,12 @@ import me.naspo.numbercruncher.levelstuff.enums.Operator;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/*
+Hard Level
+Question Types: Multiplication (outside of times table range * single digit) + (single|double|triple digit / single digit).
+Timer: 15sec/question
+Strikes: 1
+*/
 public class HardLevel extends LevelStructure {
 
     public HardLevel(LevelManager levelManager, AccountManager accountManager, Main game) {

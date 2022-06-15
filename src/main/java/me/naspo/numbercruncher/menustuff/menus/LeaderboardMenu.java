@@ -3,7 +3,6 @@ package me.naspo.numbercruncher.menustuff.menus;
 import me.naspo.numbercruncher.Utils;
 import me.naspo.numbercruncher.datamanagement.Account;
 import me.naspo.numbercruncher.datamanagement.AccountManager;
-import me.naspo.numbercruncher.levelstuff.LevelManager;
 import me.naspo.numbercruncher.menustuff.MenuManager;
 
 import java.util.*;

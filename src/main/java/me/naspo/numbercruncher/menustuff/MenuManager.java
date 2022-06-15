@@ -25,6 +25,7 @@ public class MenuManager {
         leaderboardMenu = new LeaderboardMenu(this, accountManager);
     }
 
+    //Receives an instance of LevelManager and instantiates respective classes.
     public void setLevelManager(LevelManager levelManager) {
         this.levelManager = levelManager;
         playMenu = new PlayMenu(this, accountManager, levelManager);

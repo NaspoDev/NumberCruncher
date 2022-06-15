@@ -21,6 +21,7 @@ public class PlayMenu extends MenuStructure {
         selectDifficulty();
     }
 
+    //Displays difficulty options, and send the play to the selected leve.
     private void selectDifficulty() {
         System.out.println("1 - EASY | 2 - MEDIUM | 3 - HARD");
         System.out.println("Select a Difficulty");

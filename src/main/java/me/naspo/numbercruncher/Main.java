@@ -32,6 +32,7 @@ public class Main {
         dataManager = new DataManager(accountManager);
         menuManager = new MenuManager(accountManager);
         levelManager = new LevelManager(accountManager, this);
+        //giving MenuManager an instance of LevelManager
         menuManager.setLevelManager(levelManager);
     }
 

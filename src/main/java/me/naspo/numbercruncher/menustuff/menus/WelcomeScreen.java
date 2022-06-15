@@ -18,6 +18,7 @@ public class WelcomeScreen extends MenuStructure {
         input();
     }
 
+    //Receives an input and sends the player accordingly.
     private void input() {
         switch (Utils.getInt(1, 3)) {
             //Play

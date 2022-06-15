@@ -4,12 +4,17 @@ import me.naspo.numbercruncher.Main;
 import me.naspo.numbercruncher.Utils;
 import me.naspo.numbercruncher.datamanagement.AccountManager;
 import me.naspo.numbercruncher.levelstuff.LevelManager;
-import me.naspo.numbercruncher.levelstuff.enums.Level;
 import me.naspo.numbercruncher.levelstuff.enums.Operator;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+/*
+Medium Level
+Question Types: Multiplication (within times table range) along with addition or subtraction.
+Timer: 1 min/question
+Strikes: 2
+*/
 public class MediumLevel extends LevelStructure {
 
     public MediumLevel(LevelManager levelManager, AccountManager accountManager, Main game) {
